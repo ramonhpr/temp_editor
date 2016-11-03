@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		title Knot Editor
+		link(rel='stylesheet', href='/style.css')
+	body
+		h1 Register account
+		form(class='form-signin', action='/login', method='POST')
+				input(type='text', name='username', class='form-control' ,placeholder='Username',required, autofocus)
+				br
+				input(type='text', name='phone', class='form-control' ,placeholder='Phone number',required, autofocus)
+				br
+				input(type='email', name='email', class='form-control', placeholder='Email', required,autofocus)
+				br
+				input(type='password', name='password', class='form-control', placeholder='Password', required,autofocus)
+				br
+				button(class='btn btn-lg btn-primary btn-block', type='submit') Sign Up
+				span.clearfix
