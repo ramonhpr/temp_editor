@@ -1,0 +1,31 @@
+{
+  "name": "editor_temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "~1.0.0",
+    "express": "~4.2.0",
+    "express-session": "~1.0.4",
+    "jade": "~1.3.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "~3.8.12",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramonhpr/temp_editor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramonhpr/temp_editor/issues"
+  },
+  "homepage": "https://github.com/ramonhpr/temp_editor#readme"
+}
