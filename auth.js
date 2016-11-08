@@ -1,19 +1,15 @@
 var LocalStrategy   = require('passport-local').Strategy;
-var User = require('./models/user');
 var bCrypt = require('bcrypt-nodejs');
 
-exports.login = function(passport)
+exports.login = function(passport,db)
 {
 	passport.use('login', new LocalStrategy({
             passReqToCallback : true
         },
         function(req, username, password, done) {
             // check in mongo if a user with username exists or not
-            console.log(username);
-            User.findOne({ 'username' :  username },
-                function(err, user) {
+            db.collection('user').findOne({username:req.body.username},function (err,user) {
                     // In case of any error, return using the done method
-                    console.log('entrou');
                     if (err)
                         return done(err);
                     // Username does not exist, log the error and redirect back
@@ -36,20 +32,39 @@ exports.login = function(passport)
     );
 
 
-    var isValidPassword = function(user, password){
+
+}
+var isValidPassword = function(user, password){
         return bCrypt.compareSync(password, user.password);
     }
-}
+exports.isValidPassword = isValidPassword;
 
-exports.signup = function(passport){
+// // var user = {username:String,email:String,phone:String};
+// exports.isAuthenticated = function (req, res, next) {
+//     // if user is authenticated in the session, call the next() to call the next request handler
+//     // Passport adds this method to request object. A middleware is allowed to add properties to
+//     // request and response objects
+
+//     if (req.isAuthenticated()){
+//             console.log('entrou!!!!');
+//             // user.username = req.body.username;
+//             // user.email = req.body.email;
+//             // user.phone = req.body.phone;
+//             return next();
+//     }
+//     console.log('user not authenticated!!!!');
+//     // if the user is not authenticated then redirect him to the login page
+//     res.redirect('/');
+// }
+
+exports.signup = function(passport,db){
 	passport.use('signup', new LocalStrategy({
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) {
-
             findOrCreateUser = function(){
                 // find a user in Mongo with provided username
-                User.findOne({ 'username' :  username }, function(err, user) {
+                db.collection('user').findOne({username:req.body.username},function (err,user) {
                     // In case of any error, return using the done method
                     if (err){
                         console.log('Error in SignUp: '+err);
@@ -62,23 +77,13 @@ exports.signup = function(passport){
                     } else {
                         // if there is no user with that email
                         // create the user
-                        var newUser = new User();
-
-                        // set the user's local credentials
-                        newUser.username = username;
-                        newUser.password = createHash(password);
-                        newUser.email = req.param('email');
-                        newUser.firstName = req.param('firstName');
-                        newUser.lastName = req.param('lastName');
-
-                        // save the user
-                        newUser.save(function(err) {
-                            if (err){
-                                console.log('Error in Saving user: '+err);
-                                throw err;
-                            }
-                            console.log('User Registration succesful');
-                            return done(null, newUser);
+                        req.body.password = createHash(req.body.password);
+                        var new_user =req.body;
+                        db.collection('user').save(new_user,function (err,result) {
+                            if (err)
+                                return console.log(err);
+                            console.log('saved to database');
+                            return done(null, new_user);
                         });
                     }
                 });

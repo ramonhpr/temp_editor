@@ -1,0 +1,13 @@
+doctype html
+html
+	head
+		title User delete
+		link(rel= 'stylesheet', href= '/style.css')
+	body
+			h2(color= 'red') 			DANGEROUS ZONE!! ARE YOU SURE YOU WANNA DELETE YOUR ACCOUNT?
+			h2 test #{user.username}
+			form(action='/delete_user', method='POST')
+				input(type='password', name='password', class='form-control', placeholder='Password to delete', required,autofocus)
+				br
+				button(type='submit',background-color='red') Delete account
+		a(href='/') logout

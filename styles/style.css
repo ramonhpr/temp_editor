@@ -10,9 +10,9 @@ h1
 	color:#62A943;
 }
 
-a
+h2
 {
-	color:blue;
+	color: red;
 }
 
 input
@@ -42,4 +42,5 @@ button
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
+	margin: 5px;
 }

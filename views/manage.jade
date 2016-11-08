@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		title Manage users
+		link(rel= 'stylesheet', href= '/style.css')
+	body
+		h1 Manage users
+		ul(class='users')
+			- for(var i=0; i<users.length; i++) {
+				li(class="user")
+					span Nome: #{users[i].username}
+					br
+					span Email: #{users[i].email}
+					br
+					span Phone: #{users[i].phone}
+			- }
+
+
+		a(href='/') <= Back

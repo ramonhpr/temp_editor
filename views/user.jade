@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		title User page
+		link(rel='stylesheet', href='/style.css')
+	body
+		div(align='center')
+			h1 Hello #{user.username}
+		div(class='row')
+			div(class='col-md-2')
+				aside(class='sidebar',style='display:block;')
+					ul.user-details
+						li Email: #{user.email}
+						li Phone Number: #{user.phone}
+					a(href='/delete_user')
+						button Delete account
+
+					br
+					a(href='/update_user')
+						button Update data
+					br
+		a(href='/') logout

@@ -1,0 +1,20 @@
+doctype html
+html
+	head
+		title User delete
+		link(rel= 'stylesheet', href= '/style.css')
+	body
+			div(align='center')
+				h1 Update your user datas
+
+			form(action='/update_user', method='POST')
+				h1 Update email
+				input(type='email', name='email', class='form-control', placeholder='Email',autofocus)
+				br
+				h1 Update phone number
+				- var aux = user.phone
+				input(type='text', name='phone', class='form-control' ,placeholder='Phone number', autofocus)
+				br
+				- console.log(aux)
+				button(type='submit',background-color='red') Update
+		a(href='/') logout
