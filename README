@@ -1,7 +1,7 @@
 Para instalar dependencias:
 npm install
 Para executar:
-node app.js
+npm start
 
 Url rodando a pagina:
 localhost:3000
