@@ -108,7 +108,6 @@ module.exports = function(passport){
 	//GET to sign a user out
 	router.get('/signout', function(req, res) {
 			req.logout();
-			user_logged = undefined;
 			res.redirect('/');
 	});
 
